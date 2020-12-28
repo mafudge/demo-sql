@@ -1,0 +1,469 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Example Styles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+        integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs2015.min.css"
+        integrity="sha512-w8aclkBlN3Ha08SMwFKXFJqhSUx2qlvTBFLLelF8sm4xQnlg64qmGB/A6pBIKy0W8Bo51yDMDtQiPLNRq1WMcQ=="
+        crossorigin="anonymous" />
+</head>
+
+<body class="container">
+
+    <h1>Example Code Styles</h1>
+    <p>Styles include: </p>
+
+    <ol>
+        <li>Code formatted for SQL, using Highlight.js  <a href="https://highlightjs.org/">https://highlightjs.org/</a>
+        <li>Line numbers in source code for reference, <a href="https://github.com/wcoder/highlightjs-line-numbers.js">https://github.com/wcoder/highlightjs-line-numbers.js/</a>
+        <li>An easy means to copy code to clipboard (written by author, inspired by bootstrap).
+        <li>Unique HTML table style used when there is query output as opposed to table layout of content.
+    </ol>
+
+    <h3>Basic Template:</h3>
+
+    <div class="alert alert-success">NOTE: This is an example of the code template.</div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h5>SQL Code<h5>
+                </div>
+                <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                <div class="col-sm-1"><button type="button" class="btn btn-sm btn-outline-primary"
+                        title='Copy To Clipboard' data- data-copy-id="code_template" data-toggle="tooltip"
+                        data-placement="top">Copy</button></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <pre>
+            <!-- code tag needs an id  attribute for the copy -->
+            <code class="language-sql" id="code_template"> SELECT *
+    FROM some_table
+    WHERE x > y
+    GROUP BY z
+    </code></pre>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title primary">Query Output</h5>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="table table-striped"
+                style="width:100%;">
+                <thead class="thead-dark" scope="col">
+                    <th>&nbsp;</th>
+                    <th scope="col">column_1</th>
+                    <th scope="col">column_2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-body">
+            <p>This is where the caption goes if there is one. </p>
+        </div>
+    </div>
+
+
+
+    <h3>5.3 SUB-SELECTS</h3>
+    <div class="alert alert-success">NOTE: This is an example of the code template applied to section 5.3.</div>
+    <p>There are occasions where a single SELECT statement will not satisfy the requirements of the query. In these
+        cases, we may need to combine several SELECT statements together. For example, to write a query of the
+        department names and employee counts for departments with more employees than the average department, we must
+        write this unreadable monstrosity.</p>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h5>SQL Code<h5>
+                </div>
+                <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                <div class="col-sm-1"><button type="button" class="btn btn-sm btn-outline-primary"
+                        title='Copy To Clipboard' data- data-copy-id="5_3" data-toggle="tooltip"
+                        data-placement="top">Copy</button></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <pre>
+            <!-- code tag needs an id  attribute for the copy -->
+            <code class="language-sql" id="5_3"> select employee_department, count(*) as employee_count
+    from employees
+    group by employee_department
+    having count(*) > (
+        select avg(employee_count)
+        from (
+        select employee_department, count(*) as employee_count
+        from employees
+        group by employee_department
+        ) as emp_counts
+    )</code></pre>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title primary">Query Output</h5>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="table table-striped"
+                style="width:100%;">
+                <thead class="thead-dark" scope="col">
+                    <th>&nbsp;</th>
+                    <th scope="col">employee_department</th>
+                    <th scope="col">employee_count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Customer Service</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Electronics</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Hardware</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sporting Goods</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Toys</td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-body">
+            <p>This is where the caption goes if there is one. </p>
+        </div>
+    </div>
+    <p></p>
+    <h3>5.2.3 HAVING CLAUSE</h3>
+    <div class="alert alert-success">NOTE: This example demonstrates how to place to code samples side-by-side.</div>
+    <p>The <code class="language-sql">HAVING</code> clause serves a similar purpose to the <code
+            class="language-sql">WHERE</code> clause, filtering rows from the output. While the WHERE clause filters
+        rows before the GROUP BY clause, the HAVING clause filters rows after they been grouped, and the aggregate
+        functions have executed. Thus, the only columns available to use in the HAVING clause are columns in the GROUP
+        BY clause or the output from an aggregate function.</p>
+    <p>This example has two queries side by side. The query on the left provides a count of employees who have the job
+        title ‘Sales Associate’ grouped by department. The query on the right introduces a HAVING clause to only show
+        departments with 10 or more employees.</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h5>SQL Code<h5>
+                        </div>
+                        <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                        <div class="col-sm-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                                title='Copy To Clipboard' data- data-copy-id="5_2_3_left" data-toggle="tooltip"
+                                data-placement="top">Copy</button></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <pre>
+                    <!-- code tag needs an id  attribute for the copy -->
+                    <code class="language-sql" id="5_2_3_left"> select employee_department,
+    count(*) as row_count
+    from employees
+    where employee_jobtitle = 'Sales Associate'
+    group by employee_department
+  
+</code></pre>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title primary">Query Output</h5>
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="table table-striped"
+                        style="width:100%;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">employee_department</th>
+                                <th scope="col">row_count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Clothing</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Customer Service</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Electronics</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Hardware</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Housewares</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Sporting Goods</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Toys</td>
+                                <td>9</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h5>SQL Code<h5>
+                        </div>
+                        <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                        <div class="col-sm-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                                title='Copy To Clipboard' data- data-copy-id="5_2_3_right" data-toggle="tooltip"
+                                data-placement="top">Copy</button></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <pre>
+                    <!-- code tag needs an id  attribute for the copy -->
+                    <code class="language-sql" id="5_2_3_right"> select employee_department,
+    count(*) as row_count
+    from employees
+    where employee_jobtitle = 'Sales Associate'
+    group by employee_department
+    having count(*) >= 10</code></pre>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title primary">Query Output</h5>
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="table table-striped"
+                        style="width:100%;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">employee_department</th>
+                                <th scope="col">row_count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>Customer Service</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Electronics</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <p>The <code>HAVING</code> clause included on line 6 filters the rows after the
+                        <code>GROUP BY</code> operation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>5.3.1 WITH CLAUSE</h3>
+    <div class="alert alert-success">NOTE: This example uses the code syntax highlighting to draw a syntax diagram
+        consistent with the code samples.</div>
+    <p>In the previous example, you might notice that the same query on lines 1 to 3 also appears on lines 7 to 9.
+        This is all too common with nested queries. The SQL 1999 standard added support for the WITH clause and
+        common table expressions , which allows us to name a query so it can be reused within the execution scope of
+        the statement.</p>
+    <p>The syntax of the WITH clause is as follows:</p>
+    <div class="card">
+        <div class="card-body">
+            <pre><code class="lang-sql"> WITH named_query (columns) AS (
+    SELECT …
+ )
+ SELECT …
+
+        </code></pre>
+        </div>
+    </div>
+    <p>The first SELECT statement, inside the WITH clause is saved as a temporary tabular result under the name
+        <code>named_query</code>. We can then use this named_query in the second SELECT.
+    </p>
+    <p>Here’s the previous query re-written to use the WITH clause:</p>
+    <div class="card">
+
+    </div>
+
+    <h3>12.4.3 WHAT TO INDEX</h3>
+    <div class="alert alert-success">NOTE: This example demonstrates how to represent query plans.</div>
+    <p>Let’s assume tinyu is not so tiny anymore and now has 50,000,000 students. The two queries in the screenshot are
+        performing poorly as scanning that many rows prove costly. As highlighted in the screenshot, both queries
+        perform a scan over the clustered index.</p>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h5>SQL Code<h5>
+                </div>
+                <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                <div class="col-sm-1"><button type="button" class="btn btn-sm btn-outline-primary"
+                        title='Copy To Clipboard' data- data-copy-id="12_4_3_left" data-toggle="tooltip"
+                        data-placement="top">Copy</button></div>
+            </div>
+        </div>
+        <div class="card-body">
+            <pre>
+                    <!-- code tag needs an id  attribute for the copy -->
+                    <code class="language-sql" id="12_4_3_left"> select student_firstname, student_lastname, student_gpa
+    from students
+    where student_year_name='Freshman'
+</code></pre>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title primary">Query Plan</h5>
+            <img src="https://i.imgur.com/ehwSVC9.png" class="card-img" />
+        </div>
+        <div class="card-body">
+            <p>This first query plan only retrieves rows from the table using a scan over the clustered index.</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h5>SQL Code<h5>
+                </div>
+                <!-- top make the copy work, add data-copy-id="code_id" to the button tag -->
+                <div class="col-sm-1"><button type="button" class="btn btn-sm btn-outline-primary"
+                        title='Copy To Clipboard' data- data-copy-id="12_4_3_right" data-toggle="tooltip"
+                        data-placement="top">Copy</button></div>
+            </div>
+        </div>
+        <div class="card-body">
+            <pre>
+                    <!-- code tag needs an id  attribute for the copy -->
+                    <code class="language-sql" id="12_4_3_right"> select student_year_name, avg(student_gpa) as student_avg
+    from students
+    group by student_year_name
+</code></pre>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title primary">Query Plan</h5>
+            <img src="https://i.imgur.com/tiHsawu.png" class="card-img" />
+        </div>
+        <div class="card-body">
+            <p>The second query plan, while a bit more complex, still performs a clustered index scan, similar to the first query.
+            </p>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Scripts> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"
+        integrity="sha512-9GIHU4rPKUMvNOHFOer5Zm2zHnZOjayOO3lZpokhhCtgt8FNlNiW/bb7kl0R5ZXfCDVPcQ8S4oBdNs92p5Nm2w=="
+        crossorigin="anonymous"></script>
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-iceXjjbmB2rwoX93Ka6HAHP+B76IY1z0o3h+N1PeDtRSsyeetU3/0QKJqGyPJcX63zysNehggFwMC/bi7dvMig=="
+        crossorigin="anonymous"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('button').click(function (event) {
+                var el = event.target;
+                if (!($(el).attr('data-copy-id') === undefined)) {
+                    var parent = $(el).parent();
+                    var copyid = "#" + $(el).attr('data-copy-id');
+                    text = $(copyid).text();
+                    //updateClipboard(text);
+                    copyToClipboard(parent, copyid); //better
+                    $(el).attr("data-original-title", "Copied!").tooltip('show').attr("data-original-title", "Copy To Clipboard");
+                }
+            });
+        })
+
+        // Does not preserves formatting
+        function copyToClipboard(container, selector) {
+            var $temp = $("<div>");
+            $(container).append($temp);
+            $temp.attr("contenteditable", true)
+                .html($(selector).html()).select()
+                .on("focus", function () { document.execCommand('selectAll', false, null); })
+                .focus();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+
+        // Does not preserve formatting
+        function updateClipboard(newClip) {
+            navigator.clipboard.writeText(newClip).then(function () {
+                /* clipboard successfully set */
+                console.log("copied");
+            }, function () {
+                /* clipboard write failed */
+                console.log("error");
+            });
+        }
+
+    </script>
+</body>
+
+</html>
