@@ -440,7 +440,7 @@
             });
         })
 
-        // Does not preserves formatting
+        // Preserves formatting of CRLF - Chrome / Edge / Safari compatible
         function copyToClipboard(container, selector) {
             var $temp = $("<div>");
             $(container).append($temp);
@@ -452,7 +452,7 @@
             $temp.remove();
         }
 
-        // Does not preserve formatting
+        // Does not preserve formatting of CRLF - Firefox Compatible
         function updateClipboard(newClip) {
             navigator.clipboard.writeText(newClip).then(function () {
                 /* clipboard successfully set */
